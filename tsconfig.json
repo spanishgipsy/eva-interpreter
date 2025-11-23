@@ -10,6 +10,9 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "types": ["node"],
+    "sourceMap": true,
+    "inlineSources": true,
+    "inlineSourceMap": false
   },
   "include": ["./src/**/*"],
 }

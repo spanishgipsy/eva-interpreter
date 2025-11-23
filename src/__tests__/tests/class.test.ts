@@ -47,7 +47,7 @@ export function testClass(eva: Eva) {
               )
             )
             (def calc (this)
-              (+ ((prop (super Point3D) calc) this x y)
+              (+ ((prop (super Point3D) calc) this)
                 (prop this z)
               )
             )

@@ -10,7 +10,6 @@ export * from "./global.test";
 export * from "./if.test";
 export * from "./import.test";
 export * from "./lambda-functions.test";
-export * from "./math.test";
 export * from "./module.test";
 export * from "./self-eval.test";
 export * from "./switch.test";

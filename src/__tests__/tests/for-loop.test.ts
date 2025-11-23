@@ -8,7 +8,7 @@ export function testForLoop(eva: Eva) {
       (for
         (var x 3)
         (> x 0)
-        (set x (- x 1))
+        (-- x)
         (set result (+ result 10))
       )
       result

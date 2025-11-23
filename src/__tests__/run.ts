@@ -1,46 +1,10 @@
 import Eva from '../eva';
-import {
-  testBlock,
-  testBuildInFunctions,
-  testClass,
-  testGlobal,
-  testMath,
-  testSelfEval,
-  testVariables,
-  testIf,
-  testWhile,
-  testUserDefinedFunctions,
-  testLambdaFunctions,
-  testTerminator,
-  testSwitch,
-  testForLoop,
-  testSyntaxSugar,
-  testModule,
-  testImport,
-} from './tests';
-
-const tests = [
-  testGlobal,
-  testMath,
-  testSelfEval,
-  testVariables,
-  testBlock,
-  testIf,
-  testWhile,
-  testBuildInFunctions,
-  testUserDefinedFunctions,
-  testLambdaFunctions,
-  testTerminator,
-  testSwitch,
-  testForLoop,
-  testSyntaxSugar,
-  testClass,
-  testModule,
-  testImport,
-];
+import * as tests from './tests';
 
 const eva = new Eva();
 
-tests.forEach(test => test(eva))
+Object.values(tests).forEach(
+  (testFn) => testFn(eva)
+);
 
 console.log('All assertions passed');

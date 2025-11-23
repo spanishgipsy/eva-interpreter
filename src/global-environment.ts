@@ -34,12 +34,38 @@ const GLOBAL_ENVIRONMENT = new EvaEnvironment({
     return op1 > op2;
   },
 
+  '>=' (op1, op2) {
+    return op1 >= op2;
+  },
+
   '<' (op1, op2) {
     return op1 < op2;
   },
 
+  '<=' (op1, op2) {
+    return op1 <= op2;
+  },
+
   '=' (op1, op2) {
     return op1 === op2;
+  },
+
+  '!=' (op1, op2) {
+    return op1 !== op2;
+  },
+
+  // logical operators
+
+  'or' (op1, op2) {
+    return op1 || op2;
+  },
+
+  'and' (op1, op2) {
+    return op1 && op2;
+  },
+
+  'not' (op1) {
+    return !op1;
   },
 
   print(...args) {

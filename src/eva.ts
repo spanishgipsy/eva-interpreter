@@ -14,9 +14,7 @@ import {
   EvaInc,
   EvaLambda,
   EvaLambdaFunction,
-  EvaLessOrEqual,
   EvaModule,
-  EvaMoreOrEqual,
   EvaNew,
   EvaProp,
   EvaResultValue,
@@ -29,6 +27,16 @@ import {
   EvaWhile,
 } from './model/eva-model';
 import EvaModuleResolver from "./modules/module-resolver";
+
+// TODO:
+//   1. add strict mode
+//   2. add environment name to environment
+//   3. (var base (object (value 100)))
+//   4. (object (x 10) (y 20) (__proto__ base))
+//   5. (var values (list 42 "Hello"))
+//   6. (prop values 0) or (idx values 0)
+//   7. (def async getValues (x) ...)
+
 
 export default class Eva {
   private readonly transformer = new EvaTransformer();
@@ -92,10 +100,6 @@ export default class Eva {
         return this.inc(exp, env);
       case EvaStatement.dec:
         return this.dec(exp, env);
-      case EvaStatement.moreOrEqual:
-        return this.moreOrEqual(exp, env);
-      case EvaStatement.lessOrEqual:
-        return this.lessOrEqual(exp, env);
     }
 
     // function execution
@@ -120,9 +124,9 @@ export default class Eva {
   }
 
   private assignVariable([, ref, value]: EvaVariableAssign, env: EvaEnvironment): EvaResultValue {
-    if (ref[0] === 'prop') {
-      const [, instance, propName] = ref;
-      const instanceEnv = this.eval(instance, env) as EvaEnvironment;
+    if (ref[0] === EvaStatement.prop) {
+      const [, instanceName, propName] = ref;
+      const instanceEnv = this.eval(instanceName, env) as EvaEnvironment;
       return instanceEnv.define(propName, this.eval(value, env));
     }
     return env.assign(ref as string, this.eval(value, env));
@@ -173,8 +177,8 @@ export default class Eva {
     };
   }
 
-  private class([, name, parent, body]: EvaClass, env : EvaEnvironment): EvaEnvironment {
-    const parentEnv = this.eval(parent, env) as EvaEnvironment || env;
+  private class([, name, parentName, body]: EvaClass, env : EvaEnvironment): EvaEnvironment {
+    const parentEnv = this.eval(parentName, env) as EvaEnvironment || env;
     const classEnv = new EvaEnvironment({}, parentEnv);
     this.evalBlock(body, classEnv);
     return env.define(name, classEnv);
@@ -212,23 +216,13 @@ export default class Eva {
   }
 
   private inc(exp: EvaInc, env: EvaEnvironment): EvaResultValue {
-    const setPlusExp = this.transformer.transformIncToSetPlus(exp);
-    return this.eval(setPlusExp, env);
+    const setIncExp = this.transformer.transformIncToSetPlus(exp);
+    return this.eval(setIncExp, env);
   }
 
   private dec(exp: EvaDec, env: EvaEnvironment): EvaResultValue {
-    const setPlusExp = this.transformer.transformDecToSetMinus(exp);
-    return this.eval(setPlusExp, env);
-  }
-
-  private moreOrEqual(exp: EvaMoreOrEqual, env: EvaEnvironment): EvaResultValue {
-    const setPlusExp = this.transformer.transformMoreEqualToIf(exp);
-    return this.eval(setPlusExp, env);
-  }
-
-  private lessOrEqual(exp: EvaLessOrEqual, env: EvaEnvironment): EvaResultValue {
-    const setPlusExp = this.transformer.transformLessEqualToIf(exp);
-    return this.eval(setPlusExp, env);
+    const setDecExp = this.transformer.transformDecToSetMinus(exp);
+    return this.eval(setDecExp, env);
   }
 
   private callUserDefinedFunc(fn: EvaLambdaFunction, args: EvaResultValue[]): EvaResultValue {
@@ -260,6 +254,6 @@ export default class Eva {
   }
 
   private isVariableName(exp: EvaCode): exp is string {
-    return typeof exp === 'string' && /^([+\-*/<>=]|[a-zA-Z][a-zA-Z_0-9]*)$/.test(exp);
+    return typeof exp === 'string' && /^(!=|>=|<=|[+\-*/<>=]|[a-zA-Z][a-zA-Z_0-9]*)$/.test(exp);
   }
 }

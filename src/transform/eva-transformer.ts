@@ -5,8 +5,6 @@ import {
   EvaFor,
   EvaIf,
   EvaInc,
-  EvaLessOrEqual,
-  EvaMoreOrEqual,
   EvaStatement,
   EvaSwitch,
   EvaVariableAssign,
@@ -59,29 +57,5 @@ export default class EvaTransformer {
 
   transformDecToSetMinus([, variable]: EvaDec): EvaVariableAssign {
     return [EvaStatement.set, variable, [EvaStatement.minus, variable, 1]];
-  }
-
-  transformMoreEqualToIf([, op1, op2]: EvaMoreOrEqual): EvaIf {
-    return [EvaStatement.if,
-      [EvaStatement.more, op1, op2],
-      'true',
-      [EvaStatement.if,
-        [EvaStatement.equal, op1, op2],
-        'true',
-        'false',
-      ],
-    ];
-  }
-
-  transformLessEqualToIf([, op1, op2]: EvaLessOrEqual): EvaIf {
-    return [EvaStatement.if,
-      [EvaStatement.less, op1, op2],
-      'true',
-      [EvaStatement.if,
-        [EvaStatement.equal, op1, op2],
-        'true',
-        'false',
-      ],
-    ];
   }
 }

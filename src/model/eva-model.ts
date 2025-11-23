@@ -16,15 +16,10 @@ export enum EvaStatement  {
   super = 'super',
   module = 'module',
   import = 'import',
-  inc = '++',
-  dec = '--',
-  moreOrEqual = '>=',
-  lessOrEqual = '<=',
   plus = '+',
   minus = '-',
-  less = '<',
-  more = '>',
-  equal = '=',
+  inc = '++',
+  dec = '--',
 }
 
 export interface EvaLambdaFunction {
@@ -56,13 +51,8 @@ export type EvaModule = [EvaStatement.module, string, EvaBeginBlock];
 export type EvaImport = [EvaStatement.import, string];
 export type EvaInc = [EvaStatement.inc, string];
 export type EvaDec = [EvaStatement.dec, string];
-export type EvaMoreOrEqual = [EvaStatement.moreOrEqual, EvaCode, EvaCode];
-export type EvaLessOrEqual = [EvaStatement.lessOrEqual, EvaCode, EvaCode];
 export type EvaPlus = [EvaStatement.plus, EvaCode, EvaCode];
 export type EvaMinus = [EvaStatement.minus, EvaCode, EvaCode];
-export type EvaLess = [EvaStatement.less, EvaCode, EvaCode];
-export type EvaMore = [EvaStatement.more, EvaCode, EvaCode];
-export type EvaEqual = [EvaStatement.equal, EvaCode, EvaCode];
 
 export type EvaCode =
   | EvaCodePrimitive
@@ -83,11 +73,6 @@ export type EvaCode =
   | EvaImport
   | EvaInc
   | EvaDec
-  | EvaMoreOrEqual
-  | EvaLessOrEqual
   | EvaPlus
   | EvaMinus
-  | EvaLess
-  | EvaMore
-  | EvaEqual
   ;
