@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "allowJs": true,
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    // "strict": true, // TODO: switch strict mode on
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["node"],
+  },
+  "include": ["./src/**/*"],
+}
