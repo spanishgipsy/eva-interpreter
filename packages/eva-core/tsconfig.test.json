@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,               // тесты не компилируем в dist
+    "moduleResolution": "node",
+    "rootDir": ".",
+    "types": ["node"],             // даём доступ к Node API
+  },
+  "include": ["test", "src"]
+}

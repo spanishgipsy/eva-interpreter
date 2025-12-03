@@ -1,0 +1,21 @@
+{
+  "name": "eva-cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "eva": "./bin/eva"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json -w",
+    "test": "npm run build && vitest"
+  },
+  "dependencies": {
+    "eva-core": "file:../eva-core",
+    "eva-parser": "file:../eva-parser"
+  },
+  "devDependencies": {
+    "execa": "^9.6.1"
+  }
+}

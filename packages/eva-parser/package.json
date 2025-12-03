@@ -1,0 +1,22 @@
+{
+  "name": "eva-parser",
+  "version": "0.1.0",
+  "private": true,
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "default": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "mkdir -p dist && syntax-cli --grammar src/eva-grammar.bnf --mode LALR1 --output ./dist/index.js && tsc --emitDeclarationOnly",
+    "test": "syntax-cli --grammar src/eva-grammar.bnf --mode LALR1 --parse '(begin (var x 10) (var y 20) (+ x y))' --tokenize"
+  },
+  "devDependencies": {
+    "syntax-cli": "^0.1.27"
+  }
+}

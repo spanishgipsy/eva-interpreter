@@ -1,21 +1,26 @@
 {
-  "name": "eva",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "eva-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "tsx watch src/__tests__/run.ts",
-    "start": "tsx src/index.ts",
-    "build": "tsc"
+    "eva": "npm run eva --workspace eva-cli",
+    "build": "npm run build --workspace eva-parser && npm run build --workspace eva-core && npm run build --workspace eva-cli",
+    "build:parser": "npm run build --workspace eva-parser",
+    "build:core": "npm run build --workspace eva-core",
+    "build:cli": "npm run build --workspace eva-cli",
+    "test": "npm test --workspace eva-parser && npm run test --workspace eva-core && npm run test --workspace eva-cli",
+    "test:parser": "npm test --workspace eva-parser",
+    "test:core": "npm test --workspace eva-core",
+    "test:cli": "npm test --workspace eva-cli",
+    "clear": "rm -rf node_modules package-lock.json packages/eva-core/node_modules packages/eva-core/package-lock.json packages/eva-core/dist packages/eva-cli/node_modules packages/eva-cli/package-lock.json packages/eva-cli/dist packages/eva-parser/node_modules packages/eva-parser/package-lock.json packages/eva-parser/dist"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
   "devDependencies": {
     "@types/node": "^24.10.1",
     "barrelsby": "^2.8.1",
-    "tsx": "^4.20.6",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
   }
 }

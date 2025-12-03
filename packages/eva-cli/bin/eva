@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+'use strict';
+
+import { main } from '../dist/cli.js';
+const result = main(process.argv);
+console.log(result);

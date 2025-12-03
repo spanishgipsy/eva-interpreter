@@ -1,0 +1,23 @@
+{
+  "name": "eva-core",
+  "version": "0.1.0",
+  "private": false,
+  "description": "AST based interpreter of Eva",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "watch": "tsc -p tsconfig.json -w",
+    "test": "vitest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "files": ["dist"],
+
+  "dependencies": {
+    "eva-parser": "file:../eva-parser"
+  }
+}
