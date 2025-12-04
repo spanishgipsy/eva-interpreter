@@ -6,7 +6,8 @@
     "packages/*"
   ],
   "scripts": {
-    "eva": "npm run eva --workspace eva-cli",
+    "dev": "npm run dev:eva-web",
+    "dev:eva-web": "npm run dev --workspace eva-web",
     "build": "npm run build --workspace eva-parser && npm run build --workspace eva-core && npm run build --workspace eva-cli",
     "build:parser": "npm run build --workspace eva-parser",
     "build:core": "npm run build --workspace eva-core",
@@ -15,6 +16,7 @@
     "test:parser": "npm test --workspace eva-parser",
     "test:core": "npm test --workspace eva-core",
     "test:cli": "npm test --workspace eva-cli",
+    "test:web": "npm test --workspace eva-web",
     "clear": "rm -rf node_modules package-lock.json packages/eva-core/node_modules packages/eva-core/package-lock.json packages/eva-core/dist packages/eva-cli/node_modules packages/eva-cli/package-lock.json packages/eva-cli/dist packages/eva-parser/node_modules packages/eva-parser/package-lock.json packages/eva-parser/dist"
   },
   "devDependencies": {
