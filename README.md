@@ -1,6 +1,7 @@
 # Eva Programming Language
 
-Eva is an interpreted programming language with Lisp-like S-expression syntax, implemented as an AST-based interpreter in TypeScript. The project is organized as a monorepo containing the parser, core interpreter, CLI tool, and web-based IDE. Many thanks to Dmitry Soshnikov https://www.dmitrysoshnikov.education/p/essentials-of-interpretation/
+Eva is an interpreted programming language with Lisp-like S-expression syntax, implemented as an AST-based interpreter in TypeScript. The project is organized as a monorepo containing the parser, core interpreter, CLI tool, and web-based IDE. 
+Many thanks to Dmitry Soshnikov https://www.dmitrysoshnikov.education/p/essentials-of-interpretation/
 
 ## Features
 
